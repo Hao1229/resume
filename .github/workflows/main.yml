@@ -28,11 +28,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@4.1.5
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: build
-        BUILD_SCRIPT: yarn && yarn build
-        # BUILD_SCRIPT: cp .env.example .env.local && yarn && yarn build
+    - name: Build
+      run: |
+        yarn build
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4.1.5,
+      with:
+        branch: gh-pages
+        folder: build
+        token: ${{ secrets.ACCESS_TOKEN }}
