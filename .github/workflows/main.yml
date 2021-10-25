@@ -28,8 +28,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Build
+    - name: Install and Build
       run: |
+        yarn
         yarn build
 
     - name: Deploy
